@@ -3,14 +3,13 @@ db.connect();
 
 function leerDesdeDB() {
   Utils.disableAll();
-  let data = null;
   const id = prompt('ID a leer:');
   try{
     const data = db.read(id);
     return data;
   } catch(error){  
       alert(error.message);
-      return null
+      return null;
   } finally{
     Utils.enableAll();
   }
@@ -18,7 +17,10 @@ function leerDesdeDB() {
 
 function btnLeer() {
   const data = leerDesdeDB();
-  console.info('Resultado:', data);
+  if (data === null)
+    alert('No se encuentra el registro');
+  else
+    alert('El valor obtenido es = ' + data);
 }
 
 function btnConectar() {
