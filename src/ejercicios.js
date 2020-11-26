@@ -3,10 +3,17 @@ db.connect();
 
 function leerDesdeDB() {
   Utils.disableAll();
+  let data = null;
   const id = prompt('ID a leer:');
-  const data = db.read(id);
-  Utils.enableAll();
-  return data;
+  try{
+    const data = db.read(id);
+    return data;
+  } catch(error){  
+      alert(error.message);
+      return null
+  } finally{
+    Utils.enableAll();
+  }
 }
 
 function btnLeer() {
@@ -14,22 +21,42 @@ function btnLeer() {
   console.info('Resultado:', data);
 }
 
-// function btnConectar() {
-//   Utils.disableAll();
-//   db.connect();
-//   Utils.enableAll();
-// }
+function btnConectar() {
+  try{
+    Utils.disableAll();
+    db.connect();
+  } catch (error){
+    alert('Ya se encuentra conectada la Base de datos');
+  }
+  finally {
+    Utils.enableAll();
+  }
+}
 
-// function btnCargar() {
-//   Utils.disableAll();
-//   const id = prompt('Nuevo ID:');
-//   const dato = prompt('Nuevo Dato:');
-//   db.save(id, dato);
-//   Utils.enableAll();
-// }
+function btnCargar() {
+  Utils.disableAll();
+  const id = prompt('Nuevo ID:');
+  const dato = prompt('Nuevo Dato:');
+  try{ 
+    db.save(id, dato);
+  } 
+  catch(error){
+    alert(error.message);
+  } 
+  finally{
+    Utils.enableAll();
+  }
+}
 
-// function btnDesconectar() {
-//   Utils.disableAll();
-//   db.close();
-//   Utils.enableAll();
-// }
+function btnDesconectar() {
+  try{
+    Utils.disableAll();
+    db.close();
+  }
+  catch (error){
+    alert('Ya se encuentra desconectada la Base de datos');
+  }
+  finally{
+    Utils.enableAll();
+  }
+}
