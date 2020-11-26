@@ -30,7 +30,6 @@ class BaseDatos {
         }
       }, this._disconnectInterval);
     }
-
     console.info('DB conectada');
   }
 
