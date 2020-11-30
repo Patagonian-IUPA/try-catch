@@ -1,7 +1,7 @@
 const db = new BaseDatos();
 db.connect();
 
-try {
+
 function leerDesdeDB() {
   try {
   Utils.disableAll();
@@ -21,31 +21,27 @@ function leerDesdeDB() {
   }
   return data;
 }
-} catch (ex) {
-  console.error ('Outer', 'Error. This function does not exist');
-}
 
 
-try {
+
+
 function btnLeer() {
   const data = leerDesdeDB();
   console.info('Resultado:', data);
 }
-} catch (ex) {
-   console.error ('Outer', 'Error. This function does not exist');
-}
 
 
-try {
+
+
 function btnConectar() {
   try {
  Utils.disableAll();
-  } catch (err) {
-    console.log ('Error. disableAll cannot be found in the selected file');
-  } finally {
-    console.log ('Finally');
-  }
  db.connect();
+} catch (err) {
+  console.log ('Error. disableAll cannot be found in the selected file');
+} finally {
+  console.log ('Finally');
+}
  try {
  Utils.enableAll();
   } catch (err) {
@@ -54,24 +50,22 @@ function btnConectar() {
     console.log ('Finally');
   }
 }
-} catch (ex) {
-  console.error ('Outer', 'Error. This function does not exist');
-}
 
 
-try {
+
+
 function btnCargar() {
   try {
   Utils.disableAll();
+  const id = prompt('Nuevo ID:');
+  const dato = prompt('Nuevo Dato:');
+  db.save(id, dato);
   } catch (err) {
     console.log ('Error. disableAll cannot be found in the selected file');
   } finally {
     console.log ('Finally');
   }
-   const id = prompt('Nuevo ID:');
-   const dato = prompt('Nuevo Dato:');
-   db.save(id, dato);
-   try {
+  try {
    Utils.enableAll();
   } catch (err) {
     console.log ('Error. enableAll cannot be found in the selected file');
@@ -79,13 +73,10 @@ function btnCargar() {
     console.log ('Finally');
   }
 }
-} catch (ex) {
-  console.error ('Outer', 'Error. This function does not exist');
-}
 
 
 
-try {
+
 function btnDesconectar() {
   try {
    Utils.disableAll();
@@ -98,7 +89,4 @@ function btnDesconectar() {
   } catch (err){
     console.log ('Error. enableAll cannot be found in the selected file');
   }
-}
-} catch (ex) {
-  console.error ('Outer', 'Error. This functions does not exist');
 }
