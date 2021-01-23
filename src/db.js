@@ -57,7 +57,7 @@ class BaseDatos {
     }
 
     localStorage.setItem(id, JSON.stringify(data));
-    console.info('Dato guardado correctamete', id);
+    console.info('Dato guardado correctamente', id);
   }
 
   read(id) {

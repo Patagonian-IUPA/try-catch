@@ -2,11 +2,17 @@ const db = new BaseDatos();
 db.connect();
 
 function leerDesdeDB() {
-  Utils.disableAll();
-  const id = prompt('ID a leer:');
-  const data = db.read(id);
-  Utils.enableAll();
-  return data;
+  try {
+    Utils.disableAll();
+    const id = prompt('ID a leer:');
+    const data = db.read(id);
+    return data;
+  } catch(err) {
+    alert('Error al acceder a la información del dato ingresado!\n\n' + err.message);
+    return null;
+  } finally {
+    Utils.enableAll();
+  }
 }
 
 function btnLeer() {
@@ -14,17 +20,22 @@ function btnLeer() {
   console.info('Resultado:', data);
 }
 
+function btnCargar() {
+  try {
+    Utils.disableAll();
+    const id = prompt('Nuevo ID:');
+    const dato = prompt('Nuevo Dato:');
+    db.save(id, dato);
+  } catch(err) {
+    alert('Error al cargar la información en la base de datos!\n\n' + err);
+  } finally {
+    Utils.enableAll();
+  }
+}
+
 // function btnConectar() {
 //   Utils.disableAll();
 //   db.connect();
-//   Utils.enableAll();
-// }
-
-// function btnCargar() {
-//   Utils.disableAll();
-//   const id = prompt('Nuevo ID:');
-//   const dato = prompt('Nuevo Dato:');
-//   db.save(id, dato);
 //   Utils.enableAll();
 // }
 
