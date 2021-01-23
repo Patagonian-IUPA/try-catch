@@ -1,5 +1,5 @@
 const db = new BaseDatos();
-db.connect();
+// db.connect(); 
 
 function leerDesdeDB() {
   try {
@@ -33,14 +33,24 @@ function btnCargar() {
   }
 }
 
-// function btnConectar() {
-//   Utils.disableAll();
-//   db.connect();
-//   Utils.enableAll();
-// }
+function btnConectar() {
+  try {
+    Utils.disableAll();
+    db.connect();
+  } catch(err) {
+    alert('Error al conectar con la base de datos!\n\n' + err);
+  } finally {
+    Utils.enableAll();
+  }
+}
 
-// function btnDesconectar() {
-//   Utils.disableAll();
-//   db.close();
-//   Utils.enableAll();
-// }
+function btnDesconectar() {
+  try {
+    Utils.disableAll();
+    db.close();
+  } catch(err) {
+    alert('Error al desconectarse de la base de datos!\n\n' + err);
+  } finally {
+    Utils.enableAll();
+  }
+}
