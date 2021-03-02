@@ -1,6 +1,8 @@
 const db = new BaseDatos();
 db.connect();
 
+console.info('Hola');
+
 function leerDesdeDB() {
   Utils.disableAll();
   const id = prompt('ID a leer:');
