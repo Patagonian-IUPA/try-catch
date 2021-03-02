@@ -10,8 +10,12 @@ function leerDesdeDB() {
 }
 
 function btnLeer() {
-  const data = leerDesdeDB();
-  console.info('Resultado:', data);
+  try {
+    const data = leerDesdeDB();
+    console.info('Resultado:', data);
+  } catch (err) {
+    console.error(err)
+  }
 }
 
 // function btnConectar() {
