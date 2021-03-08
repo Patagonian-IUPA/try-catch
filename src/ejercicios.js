@@ -17,8 +17,15 @@ function leerDesdeDB() {
 }
 
 function btnLeer() {
-  const data = leerDesdeDB();
-  console.info('Resultado:', data);
+  try {
+    const data = leerDesdeDB();
+  } catch (err) {
+    console.info('Resultado:', data);
+    alert(`Error!\n\n\t${err.message}`);
+    return null;
+  } finally {
+    Utils.enableAll();
+  }
 }
 
 function btnConectar() {
@@ -27,11 +34,12 @@ function btnConectar() {
   db.connect();
 } catch {
   console.info(err);
+  console.info('Resultado:', data)
   alert(`Error al Conectar!\n\n\t${err.message}`);
 } finally {
   Utils.enableAll();
 }
-}
+
 
 function btnCargar() {
   try {
