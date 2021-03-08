@@ -4,11 +4,17 @@ db.connect();
 console.info('Hola');
 
 function leerDesdeDB() {
-  Utils.disableAll();
-  const id = prompt('ID a leer:');
-  const data = db.read(id);
-  Utils.enableAll();
-  return data;
+  try {
+    Utils.disableAll();
+    const id = prompt('ID a leer:');
+    const data = db.read(id);
+    return data;
+  } catch (error) {
+    alert(error);
+    return null
+  } finally {
+    Utils.enableAll();
+  }
 }
 
 function btnLeer() {
@@ -16,22 +22,37 @@ function btnLeer() {
   console.info('Resultado:', data);
 }
 
-// function btnConectar() {
-//   Utils.disableAll();
-//   db.connect();
-//   Utils.enableAll();
-// }
+function btnConectar() {
+  try {
+    Utils.disableAll();
+    db.connect();
+  } catch (error) {
+    alert(error);
+  } finally {
+    Utils.enableAll();
+  }
+}
 
-// function btnCargar() {
-//   Utils.disableAll();
-//   const id = prompt('Nuevo ID:');
-//   const dato = prompt('Nuevo Dato:');
-//   db.save(id, dato);
-//   Utils.enableAll();
-// }
+function btnCargar() {
+  try {
+    Utils.disableAll();
+    const id = prompt('Nuevo ID:');
+    const dato = prompt('Nuevo Dato:');
+    db.save(id, dato);
+  } catch (error) {
+    alert(error);
+  } finally {
+    Utils.enableAll();
+  }
+}
 
-// function btnDesconectar() {
-//   Utils.disableAll();
-//   db.close();
-//   Utils.enableAll();
-// }
+function btnDesconectar() {
+  try {
+    Utils.disableAll();
+    db.close();
+  } catch (error) {
+    alert(error)
+  } finally {
+    Utils.enableAll();
+  }
+}
