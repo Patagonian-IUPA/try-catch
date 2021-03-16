@@ -39,8 +39,8 @@ function btnCargar() {
   }
 }
 
-// function btnDesconectar() {
-//   Utils.disableAll();
-//   db.close();
-//   Utils.enableAll();
-// }
+function btnDesconectar() {
+  Utils.disableAll();
+  db.close();
+  Utils.enableAll();
+}
