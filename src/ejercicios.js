@@ -3,19 +3,22 @@ db.connect();
 
 function leerDesdeDB() {
   Utils.disableAll();
-  const id = prompt('ID a leer:');
-  const data = db.read(id);
-  Utils.enableAll();
-  return data;
+
+  try {
+    const id = prompt('ID a leer:');
+    const data = db.read(id);
+    alert(`Datos: ${data}`);
+    return data;
+  } catch (error) {
+    alert(`Error! ${error.message}`);
+  } finally {
+    Utils.enableAll();
+  }
 }
 
 function btnLeer() {
-  try {
-    const data = leerDesdeDB();
-    console.info('Resultado:', data);
-  } catch (err) {
-    console.error(err)
-  }
+  const data = leerDesdeDB();
+  console.info('Resultado:', data);
 }
 
 // function btnConectar() {
@@ -24,13 +27,17 @@ function btnLeer() {
 //   Utils.enableAll();
 // }
 
-// function btnCargar() {
-//   Utils.disableAll();
-//   const id = prompt('Nuevo ID:');
-//   const dato = prompt('Nuevo Dato:');
-//   db.save(id, dato);
-//   Utils.enableAll();
-// }
+function btnCargar() {
+  Utils.disableAll();
+
+  try {
+    const id = prompt('Nuevo ID:');
+    const dato = prompt('Nuevo Dato:');
+    db.save(id, dato);
+  } finally {
+    Utils.enableAll();
+  }
+}
 
 // function btnDesconectar() {
 //   Utils.disableAll();
