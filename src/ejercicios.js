@@ -36,14 +36,14 @@ function btnCargar() {
   }
 }
 
-// function btnConectar() {
-//   Utils.disableAll();
-//   db.connect();
-//   Utils.enableAll();
-// }
+ function btnConectar() {
+   Utils.disableAll();
+   db.connect();
+   Utils.enableAll();
+ }
 
-// function btnDesconectar() {
-//   Utils.disableAll();
-//   db.close();
-//   Utils.enableAll();
-// }
+ function btnDesconectar() {
+   Utils.disableAll();
+   db.close();
+   Utils.enableAll();
+ }
