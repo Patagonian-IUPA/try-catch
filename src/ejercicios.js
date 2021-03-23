@@ -4,34 +4,60 @@ db.connect();
 console.info('Hola');
 
 function leerDesdeDB() {
-  Utils.disableAll();
-  const id = prompt('ID a leer:');
-  const data = db.read(id);
-  Utils.enableAll();
-  return data;
+    try {
+        Utils.disableAll();
+        const id = prompt('ID a leer:');
+        const data = db.read(id);
+        return data;
+    } catch (err) {
+        console.error('Error al leer ID', err)
+    } finally {
+        Utils.enableAll();
+    }
 }
 
 function btnLeer() {
-  const data = leerDesdeDB();
-  console.info('Resultado:', data);
+    try {
+        const data = leerDesdeDB();
+        console.info('Resultado:', data);
+    } catch (err) {
+        console.error('Error al leer BD!', err)
+    } finally {
+        Utils.enableAll();
+    }
 }
 
-// function btnConectar() {
-//   Utils.disableAll();
-//   db.connect();
-//   Utils.enableAll();
-// }
+function btnConectar() {
+    try {
+        Utils.disableAll();
+        db.connect();
+    } catch (err) {
+        console.error('Error al conectar BD!', err)
+    } finally {
+        Utils.enableAll();
+    }
+}
 
-// function btnCargar() {
-//   Utils.disableAll();
-//   const id = prompt('Nuevo ID:');
-//   const dato = prompt('Nuevo Dato:');
-//   db.save(id, dato);
-//   Utils.enableAll();
-// }
+function btnCargar() {
+    try {
+        Utils.disableAll();
+        const id = prompt('Nuevo ID:');
+        const dato = prompt('Nuevo Dato:');
+        db.save(id, dato);
+    } catch (err) {
+        console.error('Error al guardar', err)
+    } finally {
+        Utils.enableAll();
+    }
+}
 
-// function btnDesconectar() {
-//   Utils.disableAll();
-//   db.close();
-//   Utils.enableAll();
-// }
+function btnDesconectar() {
+    try {
+        Utils.disableAll();
+        db.close();
+    } catch (err) {
+        console.error('Error al desconectar BD', err)
+    } finally {
+        Utils.enableAll();
+    }
+}
