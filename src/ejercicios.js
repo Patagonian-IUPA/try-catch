@@ -10,6 +10,7 @@ function leerDesdeDB() {
     return data;
   } catch (error) {
     Utils.enableAll();
+    console.error("Danger Danger", error);
   }
 }
 
@@ -29,6 +30,7 @@ function btnConectar() {
     Utils.enableAll();
   } catch (error) {
     Utils.enableAll();
+    console.error("Danger Danger", error);
   }
 }
 
@@ -40,6 +42,7 @@ function btnCargar() {
     db.save(id, dato);
   } catch (error) {
     Utils.enableAll();
+    console.error("Danger Danger", error);
   }
 }
 
