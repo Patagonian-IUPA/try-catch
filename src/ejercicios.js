@@ -9,8 +9,9 @@ function leerDesdeDB() {
     Utils.enableAll();
     return data;
   } catch (error) {
-    Utils.enableAll();
     console.error("Danger Danger", error);
+  } finally {
+    Utils.enableAll();
   }
 }
 
@@ -29,8 +30,9 @@ function btnConectar() {
     db.connect();
     Utils.enableAll();
   } catch (error) {
-    Utils.enableAll();
     console.error("Danger Danger", error);
+  } finally {
+    Utils.enableAll();
   }
 }
 
@@ -41,8 +43,9 @@ function btnCargar() {
     const dato = prompt("Nuevo Dato:");
     db.save(id, dato);
   } catch (error) {
-    Utils.enableAll();
     console.error("Danger Danger", error);
+  } finally {
+    Utils.enableAll();
   }
 }
 
@@ -52,6 +55,8 @@ function btnDesconectar() {
     db.close();
     Utils.enableAll();
   } catch {
+    console.error("Danger Danger", error);
+  } finally {
     Utils.enableAll();
   }
 }
